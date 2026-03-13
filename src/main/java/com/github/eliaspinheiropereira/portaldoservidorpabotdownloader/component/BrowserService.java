@@ -9,9 +9,11 @@ public class BrowserService {
 
     WebDriver driver;
 
-    public void abrindoBrowser(String url){
+    public WebDriver abrindoBrowser(String url){
         this.driver = new ChromeDriver();
         this.driver.get(url);
+
+        return driver;
     }
 
     private void fechandoBrowser(){
