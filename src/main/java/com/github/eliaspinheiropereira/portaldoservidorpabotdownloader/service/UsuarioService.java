@@ -1,8 +1,6 @@
 package com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.service;
 
-import com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.component.BrowserService;
-import com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.component.CriandoPastaService;
-import com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.component.LoginService;
+import com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.component.*;
 import com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.controller.dto.UsuarioDTO;
 import com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.model.Usuario;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +14,8 @@ public class UsuarioService {
     private final BrowserService browserService;
     private final LoginService loginService;
     private final CriandoPastaService criandoPastaService;
+    private final ContraChequeService contraChequeService;
+    private final SelecionarElementosService selecionarElementosService;
 
     public void login(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario();
@@ -28,8 +28,10 @@ public class UsuarioService {
 
         WebDriver driver = abrindoSite(usuario.getUrl());
         fazendoLogin(usuario.getUsername(), usuario.getSenha(), driver);
-        criandoPastaBase(driver);
-        criandoPastaUsuario(driver);
+//        criandoPastaBase(driver);
+//        criandoPastaUsuario(driver);
+        acessandoContracheque(driver);
+        this.selecionarElementosService.selecionarElemento(driver, usuario.getAnoInicial(), usuario.getAnoFinal(), usuario.getContrato());
     }
 
     private WebDriver abrindoSite(String url){
@@ -40,11 +42,15 @@ public class UsuarioService {
         this.loginService.login(username, senha, diver);
     }
 
-    private void criandoPastaBase(WebDriver driver) {
-        this.criandoPastaService.criandoPastaBase(driver);
-    }
+//    private void criandoPastaBase(WebDriver driver) {
+//        this.criandoPastaService.criandoPastaBase(driver);
+//    }
 
-    private void criandoPastaUsuario(WebDriver driver){
-        this.criandoPastaService.criandoPastaUsuario(driver);
+//    private void criandoPastaUsuario(WebDriver driver){
+//        this.criandoPastaService.criandoPastaUsuario(driver);
+//    }
+
+    private void acessandoContracheque(WebDriver driver) {
+        this.contraChequeService.acessandoContraCheque(driver);
     }
 }
