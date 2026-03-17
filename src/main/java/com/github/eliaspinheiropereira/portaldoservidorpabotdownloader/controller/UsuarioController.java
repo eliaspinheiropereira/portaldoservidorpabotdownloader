@@ -20,7 +20,8 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<Void> login(
-            @Valid @RequestBody UsuarioDTO usuarioDTO
+            @Valid
+            @RequestBody UsuarioDTO usuarioDTO
     ){
         this.logger.info("Efetuando login no site: {}", usuarioDTO.url());
         this.usuarioService.login(usuarioDTO);
