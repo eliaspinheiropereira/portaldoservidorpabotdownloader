@@ -74,7 +74,3 @@ Retorno padrão:
   ]
 }
 
-👨‍💻 Autor
-
-Elias Pinheiro Pereira
-📧 Email: eliaspinheiropereiraa@gmail.com
