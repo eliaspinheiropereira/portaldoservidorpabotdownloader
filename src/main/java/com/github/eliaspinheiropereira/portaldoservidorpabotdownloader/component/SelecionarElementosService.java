@@ -2,6 +2,7 @@ package com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.componen
 
 import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -46,11 +47,12 @@ public class SelecionarElementosService {
         WebDriverWait wait = this.esperandoCarregarPaginasService.esperandoCarregarPagina(driver);
 
         wait.until(ExpectedConditions.elementToBeClickable(dropdown)).click();
-        By painel = By.cssSelector(".p-dropdown-panel");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(painel));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".p-dropdown-panel")));
 
-        By opcao = By.xpath("//div[contains(@class,'p-dropdown-panel')]//li[@role='option' and normalize-space()='" + texto + "']");
+        By opcao = By.xpath("//li[@role='option' and normalize-space()='" + texto + "']");
         wait.until(ExpectedConditions.elementToBeClickable(opcao)).click();
+
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".p-dropdown-panel")));
     }
 
     private List<String> listarMesesDisponiveis(WebDriver driver){
@@ -61,14 +63,15 @@ public class SelecionarElementosService {
         wait.until(ExpectedConditions.visibilityOfElementLocated(opcoes));
 
         List<String> lista = new ArrayList<>();
-        List<WebElement> elemntos = driver.findElements(opcoes);
+        List<WebElement> elemntos = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(opcoes));
 
         for (int i = 0; i < elemntos.size(); i++) {
             elemntos = driver.findElements(opcoes);
             lista.add(elemntos.get(i).getText());
         }
 
-        driver.findElement(By.tagName("body")).click();
+        driver.switchTo().activeElement().sendKeys(Keys.ESCAPE);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".p-dropdown-panel")));
         return lista;
     }
 

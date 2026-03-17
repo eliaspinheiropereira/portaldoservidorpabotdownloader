@@ -14,10 +14,10 @@ public record UsuarioDTO(
         String senha,
 
         @NotNull(message = "Este campo é obrigatório.")
-        Integer anoInicial,
+        int anoInicial,
 
         @NotNull(message = "Este campo é obrigatório.")
-        Integer anoFinal,
+        int anoFinal,
 
         @NotBlank(message = "Este campo é obrigatório, o contrato deve ser preenchido como o exemplo ao lado -> SEMEC - 18")
         String contrato
