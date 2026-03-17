@@ -2,6 +2,7 @@ package com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.controll
 
 import com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.controller.dto.UsuarioDTO;
 import com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.service.UsuarioService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<Void> login(
-            @RequestBody UsuarioDTO usuarioDTO
+            @Valid @RequestBody UsuarioDTO usuarioDTO
     ){
         this.logger.info("Efetuando login no site: {}", usuarioDTO.url());
         this.usuarioService.login(usuarioDTO);
