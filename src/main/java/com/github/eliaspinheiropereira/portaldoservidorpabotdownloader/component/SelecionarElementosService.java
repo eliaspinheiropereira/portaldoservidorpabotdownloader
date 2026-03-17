@@ -37,7 +37,7 @@ public class SelecionarElementosService {
                 selecionandoOpcoes(dropdownContrato, contrato, driver);
                 WebDriverWait wait = this.esperandoCarregarPaginasService.esperandoCarregarPagina(driver);
                 wait.until(ExpectedConditions.elementToBeClickable(this.downloadContraChequeService.clicandoDownload())).click();
-                this.downloadContraChequeService.esperandoDownload(mes);
+                this.downloadContraChequeService.esperandoDownload(driver, mes, String.valueOf(i));
             }
         }
     }

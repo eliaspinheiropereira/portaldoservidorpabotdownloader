@@ -28,10 +28,8 @@ public class UsuarioService {
 
         WebDriver driver = abrindoSite(usuario.getUrl());
         fazendoLogin(usuario.getUsername(), usuario.getSenha(), driver);
-//        criandoPastaBase(driver);
-//        criandoPastaUsuario(driver);
         acessandoContracheque(driver);
-        this.selecionarElementosService.selecionarElemento(driver, usuario.getAnoInicial(), usuario.getAnoFinal(), usuario.getContrato());
+        fazendoDownload(driver, usuario.getAnoInicial(), usuario.getAnoFinal(), usuario.getContrato());
     }
 
     private WebDriver abrindoSite(String url){
@@ -42,15 +40,11 @@ public class UsuarioService {
         this.loginService.login(username, senha, diver);
     }
 
-//    private void criandoPastaBase(WebDriver driver) {
-//        this.criandoPastaService.criandoPastaBase(driver);
-//    }
-
-//    private void criandoPastaUsuario(WebDriver driver){
-//        this.criandoPastaService.criandoPastaUsuario(driver);
-//    }
-
     private void acessandoContracheque(WebDriver driver) {
         this.contraChequeService.acessandoContraCheque(driver);
+    }
+
+    private void fazendoDownload(WebDriver driver, int anoInicial, int anoFinal, String contrato) {
+        this.selecionarElementosService.selecionarElemento(driver, anoInicial, anoFinal, contrato);
     }
 }

@@ -1,10 +1,7 @@
 package com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.component;
 
 import lombok.RequiredArgsConstructor;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +16,7 @@ public class CriandoPastaService {
 
     private final EsperandoCarregarPaginasService esperandoCarregarPaginasService;
     private final SistemaOperacionalService sistemaOperacionalService;
+    private final InformacaoUsuarioLogadoService informacaoUsuarioLogadoService;
 
     private void criandoPastaBase(WebDriver driver, String pastaAno) {
         String so = this.sistemaOperacionalService.obtendoSO(driver);
@@ -34,13 +32,11 @@ public class CriandoPastaService {
 
     private void criandoPastaUsuario(WebDriver driver, String ano){
         WebDriverWait wait = this.esperandoCarregarPaginasService.esperandoCarregarPagina(driver);
-        WebElement informacoesUsuario = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("p.texto-nome")));
         String so = this.sistemaOperacionalService.obtendoSO(driver);
         String usuarioSO = this.sistemaOperacionalService.obtendoUsuarioSO();
 
-        String texto = informacoesUsuario.getText();
-        String nome = nomeUsuario(texto);
-        String matricula = matriculausuario(texto);
+        String nome = this.informacaoUsuarioLogadoService.obtendoNome(driver);
+        String matricula = this.informacaoUsuarioLogadoService.obtendoMatricula(driver);
 
         if(so.contains("Linux")){
             Path pastaUsuarioLinux = Paths.get("/home/"+usuarioSO+"/Área de trabalho/BotPortalServidorPA/pastas_servidoresd/"+nome+" "+matricula+"/"+ano);
@@ -89,17 +85,5 @@ public class CriandoPastaService {
 
     public void criandoPastaAno(WebDriver driver, int ano){
         criandoPastaBase(driver, String.valueOf(ano));
-    }
-
-    private String nomeUsuario(String dados){
-        String[] partes = dados.split("- Matrícula:");
-        String nome = partes[0].replace("Usuário:", "").trim();
-        return nome;
-    }
-
-    private String matriculausuario(String dados){
-        String[] partes = dados.split("- Matrícula:");
-        String matricula = partes[1].replace("-", "").trim();
-        return matricula;
     }
 }
