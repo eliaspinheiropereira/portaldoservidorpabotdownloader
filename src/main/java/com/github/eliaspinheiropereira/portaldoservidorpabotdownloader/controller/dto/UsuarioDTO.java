@@ -1,6 +1,7 @@
 package com.github.eliaspinheiropereira.portaldoservidorpabotdownloader.controller.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record UsuarioDTO(
         @NotBlank(message = "Este campo é obrigatório, preencha com o site correto.")
@@ -12,11 +13,11 @@ public record UsuarioDTO(
         @NotBlank(message = "Este campo é obrigatório, preencha com a senha correta.")
         String senha,
 
-        @NotBlank(message = "Este campo é obrigatório.")
-        int anoInicial,
+        @NotNull(message = "Este campo é obrigatório.")
+        Integer anoInicial,
 
-        @NotBlank(message = "Este campo é obrigatório.")
-        int anoFinal,
+        @NotNull(message = "Este campo é obrigatório.")
+        Integer anoFinal,
 
         @NotBlank(message = "Este campo é obrigatório, o contrato deve ser preenchido como o exemplo ao lado -> SEMEC - 18")
         String contrato
