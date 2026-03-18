@@ -23,7 +23,7 @@ public class BrowserService {
         if(so.contains("Linux")){
             prefs.put("download.default_directory", "/home/" + usuario + "/Downloads/temp");
         }else {
-            prefs.put("download.default_directory", "C:/Users/" + usuario + "/Downloads/temp");
+            prefs.put("download.default_directory", "C:\\Users\\" + usuario + "\\Downloads\\temp");
         }
         prefs.put("download.prompt_for_download", false);
         prefs.put("plugins.always_open_pdf_externally", true);

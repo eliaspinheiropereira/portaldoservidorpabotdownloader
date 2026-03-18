@@ -58,8 +58,8 @@ public class DownloadContraChequeService {
                 throw new RuntimeException(e);
             }
         } else {
-            Path pastaTemp = Paths.get("C:/Users/" + usuarioSO + "/Downloads/temp");
-            Path pastaUsuarioWindows = Paths.get("C:/Users/" + usuarioSO + "/Desktop/BotPortalServidorPA/pastas_servidores/"+nome+" "+matricula+"/"+ano);
+            Path pastaTemp = Paths.get("C:\\Users\\" + usuarioSO + "\\Downloads\\temp");
+            Path pastaUsuarioWindows = Paths.get("C:\\Users\\" + usuarioSO + "\\Desktop\\BotPortalServidorPA\\pastas_servidores\\" + nome + " " + matricula + "\\" + ano);
 
             try {
                 Path arquivo = Files.list(pastaTemp)

@@ -46,7 +46,7 @@ public class CriandoPastaService {
                 throw new RuntimeException(e);
             }
         }else {
-            Path pastaUsuarioWindows = Paths.get("C:/Users/" + usuarioSO + "/Desktop/BotPortalServidorPA/pastas_servidores/"+nome+" "+matricula+"/"+ano);
+            Path pastaUsuarioWindows = Paths.get("C:\\Users\\" + usuarioSO + "\\Desktop\\BotPortalServidorPA\\pastas_servidores\\" + nome + " " + matricula + "\\" + ano);
             try {
                 Files.createDirectories(pastaUsuarioWindows);
             } catch (IOException e) {
@@ -58,8 +58,8 @@ public class CriandoPastaService {
     private void criandoPastaWindows(){
         String usuarioSO = System.getProperty("user.name");
 
-        Path pastaTemp = Paths.get("C:/Users/" + usuarioSO + "/Downloads/temp");
-        Path pastaPortalServidor = Paths.get("C:/Users/" + usuarioSO + "/Desktop/BotPortalServidorPA/pastas_servidores");
+        Path pastaTemp = Paths.get("C:\\Users\\" + usuarioSO + "\\Downloads\\temp");
+        Path pastaPortalServidor = Paths.get("C:\\Users\\" + usuarioSO + "\\Desktop\\BotPortalServidorPA\\pastas_servidores");
 
         try {
             Files.createDirectories(pastaTemp);
